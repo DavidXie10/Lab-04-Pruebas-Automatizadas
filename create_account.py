@@ -4,11 +4,13 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import time
 
 browser = webdriver.Firefox()
 
 browser.get('https://magento.softwaretestingboard.com/')
 
+#Aqui inicia crear cuenta
 elem = browser.find_element(By.LINK_TEXT, "Create an Account")
 elem.click()
 
@@ -19,7 +21,7 @@ elem = browser.find_element(By.NAME, "lastname")
 elem.send_keys('Palotes')
 
 elem = browser.find_element(By.NAME, "email")
-elem.send_keys('perico38@yahoo.com')
+elem.send_keys('perico49@yahoo.com')
 
 elem = browser.find_element(By.NAME, "password")
 elem.send_keys('asdf1234%')
@@ -29,19 +31,13 @@ elem.send_keys('asdf1234%')
 
 elem = browser.find_element(By.XPATH, "//button[@title='Create an Account']")
 elem.click()
-
-#Aqui hacer la prueba
-# elem = browser.find_element(By.XPATH, "//html/body/div[1]/div/div/div[2]/nav/ul/li[3]/a/span[2]")
-# elem.click()
-
+"""
+#Aqui inicia whislist item
 elem = browser.find_element(By.LINK_TEXT, "Men")
 elem.click()
 
 elem = browser.find_element(By.LINK_TEXT, "Tops")
 elem.click()
-
-# Find the list of <li> elements
-#li_list = browser.find_element(By.XPATH, "//a[@class='action towishlist']")
 
 elem = browser.find_element(By.CSS_SELECTOR, ".products-grid .product-image-wrapper")
 elem.click()
@@ -66,5 +62,68 @@ remove_item_link = WebDriverWait(browser, 10).until(
     EC.element_to_be_clickable((By.CSS_SELECTOR, "a.btn-remove.action.delete"))
 )
 remove_item_link.click()
+"""
+
+
+"""
+#Aqui busca item existente
+search_input_existent_item = browser.find_element(By.NAME, "q")
+
+search_input_existent_item.send_keys("Cassius Sparring Tank" + Keys.ENTER)
+
+time.sleep(2)
+
+#Aqui busca items no existentes
+
+search_input_non_existent = browser.find_element(By.NAME, "q")
+
+search_input_non_existent.clear()
+
+search_input_non_existent.send_keys("Pollo")
+
+search_input_non_existent.send_keys(Keys.ENTER)
+
+time.sleep(2)
+"""
+
+"""
+#Aqui inicia comparación de varios items (iv)
+elem = browser.find_element(By.LINK_TEXT, "Men")
+elem.click()
+
+elem = browser.find_element(By.LINK_TEXT, "Tops")
+elem.click()
+
+elem = browser.find_element(By.CSS_SELECTOR, ".products-grid .product-image-wrapper")
+elem.click()
+
+browser.refresh()
+
+add_to_compare_link = WebDriverWait(browser, 10).until(
+    EC.element_to_be_clickable((By.CLASS_NAME, "action.tocompare"))
+)
+add_to_compare_link.click()
+
+elem = browser.find_element(By.LINK_TEXT, "Women")
+elem.click()
+
+elem = browser.find_element(By.LINK_TEXT, "Tops")
+elem.click()
+
+elem = browser.find_element(By.CSS_SELECTOR, ".products-grid .product-image-wrapper")
+elem.click()
+
+browser.refresh()
+
+add_to_compare_link = WebDriverWait(browser, 10).until(
+    EC.element_to_be_clickable((By.CLASS_NAME, "action.tocompare"))
+)
+add_to_compare_link.click()
+
+compare_link = WebDriverWait(browser, 10).until(
+    EC.element_to_be_clickable((By.CLASS_NAME, "action.compare"))
+)
+compare_link.click()
+"""
 
 #browser.quit()
