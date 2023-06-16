@@ -1,6 +1,9 @@
 from selenium import webdriver
+from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 browser = webdriver.Firefox()
 
@@ -16,7 +19,7 @@ elem = browser.find_element(By.NAME, "lastname")
 elem.send_keys('Palotes')
 
 elem = browser.find_element(By.NAME, "email")
-elem.send_keys('perico15@yahoo.com')
+elem.send_keys('perico38@yahoo.com')
 
 elem = browser.find_element(By.NAME, "password")
 elem.send_keys('asdf1234%')
@@ -38,23 +41,30 @@ elem = browser.find_element(By.LINK_TEXT, "Tops")
 elem.click()
 
 # Find the list of <li> elements
-li_list = browser.find_element(By.XPATH, "//a[@class='action towishlist']")
+#li_list = browser.find_element(By.XPATH, "//a[@class='action towishlist']")
 
-first_li = li_list[0]
-first_li.click()
+elem = browser.find_element(By.CSS_SELECTOR, ".products-grid .product-image-wrapper")
+elem.click()
 
-# elem = browser.find_element(By.CLASS_NAME, "item product product-item")
-# elem.click()
+browser.refresh()
 
-#elem = browser.find_element(By.LINK_TEXT, "Remove Item")
-#elem.click()
+add_to_wishlist_link = WebDriverWait(browser, 10).until(
+    EC.element_to_be_clickable((By.CLASS_NAME, "action.towishlist"))
+)
+add_to_wishlist_link.click()
 
+browser.refresh()
 
+element_to_hover = WebDriverWait(browser, 10).until(
+    EC.visibility_of_element_located((By.XPATH, "//li[@class='product-item']"))
+)
 
-# elem = browser.find_element(By.XPATH, "//html/body/div[1]/main/div[4]/div[2]/div[1]/div[2]/dl/dd/ol/li[1]/a")
-# elem.click()
+actions = ActionChains(browser)
+actions.move_to_element(element_to_hover).perform()
 
-#elem = browser.find_element(By.XPATH, "/html/body/div[1]/main/div[3]/div[1]/div[3]/ol/li[1]/div/div/div[3]/div/div[2]/a[1]")
-#elem.click()
+remove_item_link = WebDriverWait(browser, 10).until(
+    EC.element_to_be_clickable((By.CSS_SELECTOR, "a.btn-remove.action.delete"))
+)
+remove_item_link.click()
 
 #browser.quit()
