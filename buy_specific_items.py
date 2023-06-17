@@ -1,7 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
@@ -34,7 +33,7 @@ elem = browser.find_element(By.NAME, "lastname")
 elem.send_keys('Palotes')
 
 elem = browser.find_element(By.NAME, "email")
-elem.send_keys('geko3@yahoo.com')
+elem.send_keys('geko12@yahoo.com')
 
 elem = browser.find_element(By.NAME, "password")
 elem.send_keys('asdf1234%')
@@ -90,7 +89,8 @@ add_to_cart = WebDriverWait(browser, 10).until(
 )
 add_to_cart.click()
 
-time.sleep(5)
+time.sleep(1)
+
 #Agrega Deion Long-Sleeve EverCool™ Tee al carrito
 elem = browser.find_element(By.LINK_TEXT, "Men")
 elem.click()
@@ -142,43 +142,42 @@ elem.click()
 
 # elem = browser.find_element(By.ID, "top-cart-btn-checkout")
 # elem.click()
+time.sleep(1)
 
 elem = browser.find_element(By.ID, 'top-cart-btn-checkout')
 actions = ActionChains(browser)
 actions.move_to_element(elem).perform()
 elem.click()
 
+time.sleep(5)
 
-#elem = browser.find_element(By.XPATH, "//input[@name='street[0]']")
-#elem.send_keys("aaaaaaaaaa")
+elem = browser.find_element(By.XPATH, "//input[@name='street[0]']")
+elem.send_keys("Guadalupe")
 
-#city = browser.find_element(By.XPATH, "//input[@name='city']")
-#city.send_keys("Rohrmoser")
-#time.sleep(1)
+elem = browser.find_element(By.XPATH, "//input[@name='city']")
+elem.send_keys("San José")
 
-#country = browser.find_element(By.XPATH, "//select[@name='country_id']")
-#country.send_keys("Costa Rica")
-#time.sleep(1)
+elem = browser.find_element(By.XPATH, "//select[@name='country_id']")
+elem.send_keys("Costa Rica")
 
-#zip = browser.find_element(By.XPATH, "//input[@name='postcode']")
-#zip.send_keys("10109")
-#time.sleep(1)
+elem = browser.find_element(By.XPATH, "//input[@name='postcode']")
+elem.send_keys("10801")
 
-#phone = browser.find_element(By.XPATH, "//input[@name='telephone']")
-#phone.send_keys("84272458")
-#time.sleep(3)
+elem = browser.find_element(By.XPATH, "//input[@name='telephone']")
+elem.send_keys("88884444")
 
-# press next button
-# next_button = browser.find_element(
-#     By.XPATH, "//button[@data-role='opc-continue']"
-# )
-# next_button.click()
-# time.sleep(5)
+time.sleep(5)
 
-# # press place order button
-# place_order_button = browser.find_element(
-#     By.XPATH, "//button[@title='Place Order']"
-# )
-# place_order_button.click()
-# time.sleep(5)
-#browser.quit()
+next_button = browser.find_element(
+     By.XPATH, "//button[@data-role='opc-continue']"
+)
+next_button.click()
+time.sleep(5)
+
+place_order_button = browser.find_element(
+    By.XPATH, "//button[@title='Place Order']"
+)
+place_order_button.click()
+time.sleep(5)
+
+browser.quit()
