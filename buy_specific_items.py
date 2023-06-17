@@ -9,12 +9,14 @@ browser = webdriver.Firefox()
 
 browser.get('https://magento.softwaretestingboard.com/')
 
-#Login
+# Inicio de sesion
 elem = browser.find_element(By.LINK_TEXT, "Sign In")
 elem.click()
 
 elem = browser.find_element(By.ID, "email")
-elem.send_keys('snoopie7@yahoo.com')
+
+# Debe cambiar el email por el que se registró en la creación de la nueva cuenta
+elem.send_keys('testuser02@yahoo.com')
 
 elem = browser.find_element(By.ID, "pass")
 elem.send_keys('asdf1234%')
@@ -22,8 +24,7 @@ elem.send_keys('asdf1234%')
 elem = browser.find_element(By.ID, "send2")
 elem.click()
 
-#Aqui inicia punto 5
-#Agrega Ariel Roll Sleeve Sweatshirt al carrito
+# Agrega Ariel Roll Sleeve Sweatshirt al carrito
 element_to_hover = WebDriverWait(browser, 10).until(
     EC.visibility_of_element_located((By.LINK_TEXT, "Women"))
 )
@@ -67,7 +68,7 @@ add_to_cart.click()
 
 time.sleep(1)
 
-#Agrega Deion Long-Sleeve EverCool™ Tee al carrito
+# Agrega Deion Long-Sleeve EverCool Tee al carrito
 elem = browser.find_element(By.LINK_TEXT, "Men")
 elem.click()
 
@@ -111,8 +112,7 @@ add_to_cart = WebDriverWait(browser, 10).until(
 )
 add_to_cart.click()
 
-
-#Proceder a realizar la compra
+# Proceder a realizar la compra
 elem = browser.find_element(By.XPATH, "//a[@class='action showcart']")
 elem.click()
 
