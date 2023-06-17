@@ -10,41 +10,17 @@ browser = webdriver.Firefox()
 browser.get('https://magento.softwaretestingboard.com/')
 
 #Login
-# elem = browser.find_element(By.LINK_TEXT, "Sign In")
-# elem.click()
-
-# elem = browser.find_element(By.ID, "email")
-# elem.send_keys('snoopie7@yahoo.com')
-
-# elem = browser.find_element(By.ID, "pass")
-# elem.send_keys('asdf1234%')
-
-# elem = browser.find_element(By.ID, "send2")
-# elem.click()
-
-#Aqui inicia crear cuenta
-elem = browser.find_element(By.LINK_TEXT, "Create an Account")
+elem = browser.find_element(By.LINK_TEXT, "Sign In")
 elem.click()
 
-elem = browser.find_element(By.NAME, "firstname")
-elem.send_keys('Perico')
+elem = browser.find_element(By.ID, "email")
+elem.send_keys('snoopie7@yahoo.com')
 
-elem = browser.find_element(By.NAME, "lastname")
-elem.send_keys('Palotes')
-
-elem = browser.find_element(By.NAME, "email")
-elem.send_keys('geko12@yahoo.com')
-
-elem = browser.find_element(By.NAME, "password")
+elem = browser.find_element(By.ID, "pass")
 elem.send_keys('asdf1234%')
 
-elem = browser.find_element(By.NAME, "password_confirmation")
-elem.send_keys('asdf1234%')
-
-elem = browser.find_element(By.XPATH, "//button[@title='Create an Account']")
+elem = browser.find_element(By.ID, "send2")
 elem.click()
-
-
 
 #Aqui inicia punto 5
 #Agrega Ariel Roll Sleeve Sweatshirt al carrito
@@ -140,8 +116,6 @@ add_to_cart.click()
 elem = browser.find_element(By.XPATH, "//a[@class='action showcart']")
 elem.click()
 
-# elem = browser.find_element(By.ID, "top-cart-btn-checkout")
-# elem.click()
 time.sleep(1)
 
 elem = browser.find_element(By.ID, 'top-cart-btn-checkout')
@@ -168,15 +142,11 @@ elem.send_keys("88884444")
 
 time.sleep(5)
 
-next_button = browser.find_element(
-     By.XPATH, "//button[@data-role='opc-continue']"
-)
+next_button = browser.find_element(By.XPATH, "//button[@data-role='opc-continue']")
 next_button.click()
 time.sleep(5)
 
-place_order_button = browser.find_element(
-    By.XPATH, "//button[@title='Place Order']"
-)
+place_order_button = browser.find_element(By.XPATH, "//button[@title='Place Order']")
 place_order_button.click()
 time.sleep(5)
 
